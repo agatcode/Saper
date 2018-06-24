@@ -6,10 +6,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.Stop;
+import javafx.scene.paint.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -35,14 +32,15 @@ class Piece extends StackPane {
         piecePrint.setVisible(false);
 
         Rectangle picIcon = new Rectangle(FIELD_SIZE - 1, FIELD_SIZE - 1);
-        picIcon.setFill(new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.NO_CYCLE,
-                new Stop(1, Color.GREY),
-                new Stop(0, Color.WHITE)));
-        picIcon.setStroke(Color.BLACK);
+        picIcon.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
+                new Stop[] { new Stop(0, Color.WHITE), new Stop(1, Color.GREY)}));
 
         this.getChildren().addAll(picIcon, piecePrint);
 
         setOnMouseClicked(event -> check(event));
+
+        setTranslateX(FIELD_SIZE * x);
+        setTranslateY(FIELD_SIZE * y);
     }
 
     void check(MouseEvent e){

@@ -26,7 +26,7 @@ public class Main extends Application {
     private HBox createTopMenu(){
         HBox menu = new HBox();
         menu.setPadding(new Insets(10,10,10,10));
-        menu.setStyle("-fx-background-color: #730099");
+        menu.setStyle("-fx-background-color: GREY");
         menu.setSpacing(10);
 
         Button btnRestart = new Button("Restart");
@@ -45,7 +45,7 @@ public class Main extends Application {
         gameScene.setTop(createTopMenu());
 
         Pane batterField = new Pane();
-        gameScene.setPrefSize(NUM_OF_FIELDS * FIELD_SIZE, NUM_OF_FIELDS * FIELD_SIZE);
+        batterField.setPrefSize(NUM_OF_FIELDS * FIELD_SIZE, NUM_OF_FIELDS * FIELD_SIZE);
 
         for (int i = 0; i < NUM_OF_FIELDS; i++){
             for (int j=0; j< NUM_OF_FIELDS; j++){
@@ -70,7 +70,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("saper.fxml"));
         primaryStage.setTitle("Bombowa Gra");
-        primaryStage.setScene(new Scene(createGameScene(), 300, 275));
+        primaryStage.setResizable(false);
+        primaryStage.setScene(new Scene(createGameScene(), FIELD_SIZE * NUM_OF_FIELDS, FIELD_SIZE * NUM_OF_FIELDS + 45));
         primaryStage.show();
     }
 
