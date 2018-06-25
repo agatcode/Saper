@@ -5,15 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.util.Random;
 
 public class Main extends Application {
 
@@ -23,17 +19,15 @@ public class Main extends Application {
 
     private HBox createTopMenu(){
         HBox menu = new HBox();
+        Text mainTxt = new Text("Saper");
+        mainTxt.setFont(new Font("Comic Sans MS",20));
+        mainTxt.setStroke(Color.BLACK);
+        mainTxt.setFill(Color.GREY);
         menu.setPadding(new Insets(10,10,10,10));
         menu.setStyle("-fx-background-color: GREY");
         menu.setSpacing(10);
 
-        Button btnRestart = new Button("Restart");
-
-        TextField tfPoints = new TextField("0");
-        tfPoints.setEditable(false);
-        tfPoints.setMaxWidth(50);
-
-        menu.getChildren().addAll(btnRestart, tfPoints);
+        menu.getChildren().addAll(mainTxt);
 
         return menu;
     }
@@ -62,11 +56,6 @@ public class Main extends Application {
 
         return gameScene;
     }
-
-
-   private void restart() {
-       
-   }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
