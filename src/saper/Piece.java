@@ -19,11 +19,9 @@ import static saper.Main.FIELD_SIZE;
 class Piece extends StackPane {
     private int x, y;
     private boolean isBomb;
-    private boolean checked = false;
     private Text piecePrint;
     private String neighboursBombsCount;
     private Rectangle picIcon;
-    private boolean gameOver = false;
 
     public Piece(int x, int y, boolean isBomb){
         this.x = x;
@@ -45,10 +43,6 @@ class Piece extends StackPane {
         setTranslateY(FIELD_SIZE * y);
     }
 
-    public boolean getGameOver(){
-        return this.gameOver;
-    }
-
     public boolean getIsBomb(){
         return this.isBomb;
     }
@@ -62,6 +56,11 @@ class Piece extends StackPane {
     }
 
     void check(MouseEvent e){
+        if (BatterfieldSetUp.gameOver) {
+            this.setDisable(true);
+            return;
+        }
+
         if ((this.piecePrint.visibleProperty().getValue()==true)
             && (this.piecePrint.getText() != "o"))
             return;
@@ -72,7 +71,7 @@ class Piece extends StackPane {
         else{
             if(isBomb){
              this.picIcon.setFill(Color.RED);
-             gameOver();
+             BatterfieldSetUp.gameOver();
              return;
             }
             this.piecePrint.setText(this.neighboursBombsCount);
@@ -86,19 +85,4 @@ class Piece extends StackPane {
         else return true;
     }
 
-    private void gameOver(){
-        Stage gameOverPopup = new Stage();
-        gameOverPopup.setResizable(false);
-        gameOverPopup.setTitle("Boom!");
-
-        Text gameOverTxt = new Text("BOOOOM! Game Over!");
-        gameOverTxt.setVisible(true);
-        BorderPane popupPane = new BorderPane();
-
-        popupPane.setCenter(gameOverTxt);
-
-        gameOverPopup.setScene(
-                new Scene(popupPane, 200, 100));
-        gameOverPopup.show();
-    }
 }

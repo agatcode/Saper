@@ -52,10 +52,21 @@ public class Main extends Application {
             }
         }
 
+        for (int i = 0; i < NUM_OF_FIELDS; i++){
+            for (int j=0; j< NUM_OF_FIELDS; j++){
+                piecesArray[i][j].setNeighboursBombsCount(BatterfieldSetUp.countNeighboursBombs(i, j, piecesArray));
+            }
+        }
+
         gameScene.setCenter(batterField);
 
         return gameScene;
     }
+
+
+   private void restart() {
+       
+   }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
