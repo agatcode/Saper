@@ -13,14 +13,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.util.Random;
 
 public class Main extends Application {
 
     static final int FIELD_SIZE = 30;
     static final int NUM_OF_FIELDS = 8;
-    int bombsCountInGame = 0;
     Piece[][] piecesArray = new Piece[NUM_OF_FIELDS][NUM_OF_FIELDS];
 
     private HBox createTopMenu(){
@@ -49,7 +47,7 @@ public class Main extends Application {
 
         for (int i = 0; i < NUM_OF_FIELDS; i++){
             for (int j=0; j< NUM_OF_FIELDS; j++){
-                piecesArray[i][j] = new Piece(i,j,assignBombOrNot());
+                piecesArray[i][j] = new Piece(i,j, BatterfieldSetUp.plantBomb());
                 batterField.getChildren().add(piecesArray[i][j]);
             }
         }
@@ -57,13 +55,6 @@ public class Main extends Application {
         gameScene.setCenter(batterField);
 
         return gameScene;
-    }
-
-    private boolean assignBombOrNot(){
-        boolean isBomb;
-        Random isBombRand = new Random();
-        if (bombsCountInGame > 10) return false;
-        else return(isBombRand.nextBoolean());
     }
 
     @Override
