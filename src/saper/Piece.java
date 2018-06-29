@@ -21,7 +21,7 @@ class Piece extends StackPane {
         this.y = y;
         this.isBomb = isBomb;
 
-        piecePrint = new Text("o");
+        piecePrint = new Text("x");
         piecePrint.setVisible(false);
 
         picIcon = new Rectangle(FIELD_SIZE - 1, FIELD_SIZE - 1);
@@ -55,7 +55,7 @@ class Piece extends StackPane {
         }
 
         if ((this.piecePrint.visibleProperty().getValue()==true)
-            && (this.piecePrint.getText() != "o"))
+            && (this.piecePrint.getText() != "x"))
             return;
 
         if ((e.getButton() == MouseButton.SECONDARY)){

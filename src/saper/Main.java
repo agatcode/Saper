@@ -5,9 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,17 +20,23 @@ public class Main extends Application {
     static final int NUM_OF_FIELDS = 8;
     Piece[][] piecesArray = new Piece[NUM_OF_FIELDS][NUM_OF_FIELDS];
 
-    private HBox createTopMenu(){
-        HBox menu = new HBox();
-        Text mainTxt = new Text("Saper");
-        mainTxt.setFont(new Font("Comic Sans MS",20));
-        mainTxt.setStroke(Color.BLACK);
-        mainTxt.setFill(Color.GREY);
-        menu.setPadding(new Insets(10,10,10,10));
-        menu.setStyle("-fx-background-color: GREY");
-        menu.setSpacing(10);
+    private BorderPane createTopMenu(){
+        BorderPane menu = new BorderPane();
+        Text mainTxt = new Text("SAPER");
+        InnerShadow inSh = new InnerShadow();
+        Button restartBtn = new Button("Restart");
+       // inSh.setOffsetX(5.0f);
+       // inSh.setOffsetY(5.0f);
 
-        menu.getChildren().addAll(mainTxt);
+        mainTxt.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        mainTxt.setStroke(Color.WHITESMOKE);
+        mainTxt.setFill(Color.WHITESMOKE);
+        mainTxt.setEffect(inSh);
+        menu.setPadding(new Insets(10,10,10,10));
+        menu.setStyle("-fx-background-color: WHITE");
+
+        menu.setRight(restartBtn);
+        menu.setCenter(mainTxt);
 
         return menu;
     }
