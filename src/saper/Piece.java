@@ -8,6 +8,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import static saper.Main.FIELD_SIZE;
+import static saper.Main.NUM_OF_FIELDS;
 
 class Piece extends StackPane {
     private int x, y;
@@ -49,7 +50,7 @@ class Piece extends StackPane {
     }
 
     void check(MouseEvent e){
-        if (BatterfieldSetUp.gameOver) {
+        if (BatterfieldSetUp.gameFinished) {
             this.setDisable(true);
             return;
         }
@@ -62,10 +63,15 @@ class Piece extends StackPane {
             this.piecePrint.setVisible(oppositeBoolValue(this.piecePrint.visibleProperty().getValue()));
         }
         else{
+            BatterfieldSetUp.openedPieces++;
             if(isBomb){
              this.picIcon.setFill(Color.RED);
-             BatterfieldSetUp.gameOver();
+             BatterfieldSetUp.gameEnd(true);
              return;
+            }
+            if(BatterfieldSetUp.openedPieces == (NUM_OF_FIELDS*NUM_OF_FIELDS)-BatterfieldSetUp.bombsCount){
+                BatterfieldSetUp.gameEnd(true);
+                return;
             }
             this.piecePrint.setText(this.neighboursBombsCount);
             this.piecePrint.setVisible(true);

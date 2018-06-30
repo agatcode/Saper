@@ -12,7 +12,9 @@ import static saper.Main.NUM_OF_FIELDS;
 
 public class BatterfieldSetUp {
 
-    static Boolean gameOver = false;
+    static Boolean gameFinished = false;
+    static int openedPieces = 0;
+    static int bombsCount = 0;
 
     static boolean plantBomb(){
         Random rand = new Random();
@@ -26,7 +28,6 @@ public class BatterfieldSetUp {
     }
 
     static int countNeighboursBombs(int x, int y, Piece[][] pieceTab){
-        int bombsCount = 0;
         ArrayList<Piece> neighboursList = new ArrayList<>();
 
         if (x < NUM_OF_FIELDS-1) {
@@ -58,23 +59,31 @@ public class BatterfieldSetUp {
         return bombsCount;
     }
 
-    static void gameOver(){
-        Stage gameOverPopup = new Stage();
-        gameOverPopup.setResizable(false);
-        gameOverPopup.setTitle("Boom!");
+    static void gameEnd(Boolean gameOver){
+        Stage gameEndPopup = new Stage();
+        Text gameEndTxt;
+        gameEndPopup.setResizable(false);
+        if (gameOver){
+            gameEndPopup.setTitle("Boom!");
+            gameEndTxt = new Text("BOOOOM! Game Over!");
+        }
+        else{
+            gameEndPopup.setTitle("Congrats!");
+            gameEndTxt = new Text("You won!");
+        }
 
-        Text gameOverTxt = new Text("BOOOOM! Game Over!");
-        gameOverTxt.setVisible(true);
+        gameEndTxt.setVisible(true);
         BorderPane popupPane = new BorderPane();
 
-        popupPane.setCenter(gameOverTxt);
+        popupPane.setCenter(gameEndTxt);
 
-        gameOverPopup.setScene(
+        gameEndPopup.setScene(
                 new Scene(popupPane, 200, 100));
-        gameOverPopup.show();
+        gameEndPopup.show();
 
-        gameOver = true;
+        gameFinished = true;
 
     }
+
 }
 

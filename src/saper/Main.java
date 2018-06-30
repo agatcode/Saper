@@ -25,8 +25,6 @@ public class Main extends Application {
         Text mainTxt = new Text("SAPER");
         InnerShadow inSh = new InnerShadow();
         Button restartBtn = new Button("Restart");
-       // inSh.setOffsetX(5.0f);
-       // inSh.setOffsetY(5.0f);
 
         mainTxt.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         mainTxt.setStroke(Color.WHITESMOKE);
