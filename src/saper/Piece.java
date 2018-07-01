@@ -69,7 +69,7 @@ class Piece extends StackPane {
              BatterfieldSetUp.gameEnd(true);
              return;
             }
-            if(BatterfieldSetUp.openedPieces == (NUM_OF_FIELDS*NUM_OF_FIELDS)-BatterfieldSetUp.bombsCount){
+            if(BatterfieldSetUp.openedPieces == (NUM_OF_FIELDS*NUM_OF_FIELDS)-BatterfieldSetUp.bombsInGame){
                 BatterfieldSetUp.gameEnd(true);
                 return;
             }

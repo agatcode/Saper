@@ -25,6 +25,7 @@ public class Main extends Application {
         Text mainTxt = new Text("SAPER");
         InnerShadow inSh = new InnerShadow();
         Button restartBtn = new Button("Restart");
+        restartBtn.setOnMouseClicked(e -> restart());
 
         mainTxt.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         mainTxt.setStroke(Color.WHITESMOKE);
@@ -71,6 +72,10 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(createGameScene(), FIELD_SIZE * NUM_OF_FIELDS, FIELD_SIZE * NUM_OF_FIELDS + 45));
         primaryStage.show();
+    }
+
+    private void restart(){
+        //to be implemented
     }
 
     public static void main(String[] args) {

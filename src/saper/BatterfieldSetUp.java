@@ -14,7 +14,7 @@ public class BatterfieldSetUp {
 
     static Boolean gameFinished = false;
     static int openedPieces = 0;
-    static int bombsCount = 0;
+    static int bombsInGame = 0;
 
     static boolean plantBomb(){
         Random rand = new Random();
@@ -22,6 +22,7 @@ public class BatterfieldSetUp {
 
         generatedNum = rand.nextInt(5);
         if (generatedNum == 0){
+            bombsInGame++;
             return true;
         }
         return false;
@@ -29,6 +30,7 @@ public class BatterfieldSetUp {
 
     static int countNeighboursBombs(int x, int y, Piece[][] pieceTab){
         ArrayList<Piece> neighboursList = new ArrayList<>();
+        int bombsCount = 0;
 
         if (x < NUM_OF_FIELDS-1) {
             neighboursList.add(pieceTab[x+1][y]);
